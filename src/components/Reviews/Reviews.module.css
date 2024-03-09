@@ -1,0 +1,17 @@
+.ul {
+    list-style: none;
+}
+
+.li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.h6 {
+    color: #32399c;
+}
+
+.p {
+    color: #455a70;
+}

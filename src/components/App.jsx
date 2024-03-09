@@ -1,10 +1,13 @@
-import Home from 'pages/Home/Home';
-import Movies from 'pages/Movies/Movies';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Cast from './Cast/Cast';
-import MovieDetails from '../pages/MovieDetails/MovieDetails';
-import Reviews from './Reviews/Reviews';
+import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('pages/Home/Home'));
+const Movies = lazy(() => import('pages/Movies/Movies'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
+const Page404 = lazy(() => import('pages/Page404/Page404'));
 
 export const App = () => {
   return (
@@ -19,7 +22,7 @@ export const App = () => {
           </Route>
         </Route>
 
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
   );

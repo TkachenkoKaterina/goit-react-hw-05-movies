@@ -1,0 +1,23 @@
+.ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 15px;
+}
+
+.li {
+    margin-bottom: 20px;
+}
+
+.img {
+    max-width:  100px;
+    height: auto;
+}
+
+.h5 {
+    color: #0e0d0d;
+}
+
+.p {
+    color: #3d3b36;
+}

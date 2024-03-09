@@ -1,17 +1,26 @@
 import { detailsApi } from 'api/Api';
+import { BackLink } from 'components/BackLink/BackLink';
 import { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
-  const location = useLocation();
-  const { movieId } = location.state;
+  const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+
+  const location = useLocation();
+
+  let backLinkHref = '/';
+  if (location.state?.from.pathname === '/movies') {
+    backLinkHref = '/movies';
+  } else {
+    backLinkHref = location.state?.from ?? '/';
+  }
 
   useEffect(() => {
     const fetchMovieByID = async () => {
       try {
         const movieDetails = await detailsApi(movieId);
-        // console.log('movieDetails ', movieDetails);
         setMovie(movieDetails);
       } catch (error) {
         console.error('Error fetching data:', error.message);
@@ -28,22 +37,27 @@ const MovieDetails = () => {
   const { title, vote_average, overview, genres, poster_path } = movie;
 
   return (
-    <div>
-      <div>
-        <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" />
+    <div className={css.container}>
+      <BackLink to={backLinkHref}>Back to Movies</BackLink>
+      <div className={css.box}>
+        <img
+          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+          alt={title}
+          className={css.img}
+        />
         <div>
-          <h2>{title}</h2>
-          <p>User crores {Math.round(vote_average * 10)} %</p>
-          <h3>Overview</h3>
+          <h2 className={css.h}>{title}</h2>
+          <p className={css.p}>User crores {Math.round(vote_average * 10)} %</p>
+          <h2>Overview</h2>
           <p>{overview}</p>
-          <h4>Genres</h4>
+          <h2>Genres</h2>
           <p>{genres.map(genre => genre.name).join(', ')}</p>
         </div>
-        <div>
-          <h5>Additional information</h5>
-          <Link to="cast">Cast</Link>
-          <Link to="reviews">Reviews</Link>
-        </div>
+      </div>
+      <div className={css.add}>
+        <h5>Additional information</h5>
+        <Link to="cast">Cast</Link>
+        <Link to="reviews">Reviews</Link>
       </div>
       <Suspense fallback={<div>Loading ...</div>}>
         <Outlet />

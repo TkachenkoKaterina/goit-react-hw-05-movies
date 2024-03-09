@@ -5,6 +5,7 @@ const TREND_URL = 'https://api.themoviedb.org/3/trending/all/day';
 const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
 const DETAILS_URL = 'https://api.themoviedb.org/3/movie';
 const CAST_URL = 'https://api.themoviedb.org/3/movie';
+const REVIEWS_URL = 'https://api.themoviedb.org/3/movie';
 
 export const trendApi = async query => {
   const { data } = await axios.get(`${TREND_URL}?api_key=${KEY}`);
@@ -28,6 +29,14 @@ export const detailsApi = async id => {
 
 export const castApi = async id => {
   const { data } = await axios.get(`${CAST_URL}/${id}/credits?api_key=${KEY}`);
-  console.log('castApi', data);
+  // console.log('castApi', data);
+  return data;
+};
+
+export const reviewsApi = async id => {
+  const { data } = await axios.get(
+    `${REVIEWS_URL}/${id}/reviews?api_key=${KEY}`
+  );
+  console.log('reviewsApi', data);
   return data;
 };
