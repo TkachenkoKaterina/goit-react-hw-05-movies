@@ -9,7 +9,7 @@ const MovieList = ({ data }) => {
       {data.map(({ title, name, id }) => {
         return (
           <Link
-            to={`movies/:${id}`}
+            to={`/movies/${id}`}
             key={id}
             state={{ from: location, movieId: id }}
             className={css.movieLink}

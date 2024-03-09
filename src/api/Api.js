@@ -4,6 +4,7 @@ const KEY = '38934e86a14f960618f8ef1a627c3e51';
 const TREND_URL = 'https://api.themoviedb.org/3/trending/all/day';
 const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
 const DETAILS_URL = 'https://api.themoviedb.org/3/movie';
+const CAST_URL = 'https://api.themoviedb.org/3/movie';
 
 export const trendApi = async query => {
   const { data } = await axios.get(`${TREND_URL}?api_key=${KEY}`);
@@ -21,8 +22,12 @@ export const searchApi = async searchValue => {
 
 export const detailsApi = async id => {
   const { data } = await axios.get(`${DETAILS_URL}/${id}?api_key=${KEY}`);
-  console.log('detailsApi', data);
+  // console.log('detailsApi', data);
   return data;
 };
 
-// 291015 "Under the Dog"
+export const castApi = async id => {
+  const { data } = await axios.get(`${CAST_URL}/${id}/credits?api_key=${KEY}`);
+  console.log('castApi', data);
+  return data;
+};

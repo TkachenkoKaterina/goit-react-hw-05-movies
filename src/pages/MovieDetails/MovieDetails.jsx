@@ -1,6 +1,6 @@
 import { detailsApi } from 'api/Api';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -11,7 +11,7 @@ const MovieDetails = () => {
     const fetchMovieByID = async () => {
       try {
         const movieDetails = await detailsApi(movieId);
-        console.log('movieDetails ', movieDetails);
+        // console.log('movieDetails ', movieDetails);
         setMovie(movieDetails);
       } catch (error) {
         console.error('Error fetching data:', error.message);
@@ -25,16 +25,15 @@ const MovieDetails = () => {
     return null;
   }
 
-  console.log('movie', movie);
   const { title, vote_average, overview, genres, poster_path } = movie;
 
   return (
     <div>
       <div>
-        <img src={poster_path} alt="" />
+        <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" />
         <div>
           <h2>{title}</h2>
-          <p>User crores {vote_average}</p>
+          <p>User crores {Math.round(vote_average * 10)} %</p>
           <h3>Overview</h3>
           <p>{overview}</p>
           <h4>Genres</h4>
@@ -42,10 +41,13 @@ const MovieDetails = () => {
         </div>
         <div>
           <h5>Additional information</h5>
-          <p>Cast</p>
-          <p>Reviews</p>
+          <Link to="cast">Cast</Link>
+          <Link to="reviews">Reviews</Link>
         </div>
       </div>
+      <Suspense fallback={<div>Loading ...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

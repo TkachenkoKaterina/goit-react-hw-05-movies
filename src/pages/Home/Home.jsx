@@ -9,7 +9,6 @@ const Home = () => {
     const fetchTrends = async () => {
       try {
         const { results } = await trendApi();
-        console.log(results);
         setDataTrend(results);
       } catch (error) {
         console.error('Error fetching data:', error.message);

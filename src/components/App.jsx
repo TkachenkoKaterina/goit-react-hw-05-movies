@@ -1,6 +1,6 @@
 import Home from 'pages/Home/Home';
 import Movies from 'pages/Movies/Movies';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Cast from './Cast/Cast';
 import MovieDetails from '../pages/MovieDetails/MovieDetails';
 import Reviews from './Reviews/Reviews';
@@ -18,6 +18,8 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
+
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
