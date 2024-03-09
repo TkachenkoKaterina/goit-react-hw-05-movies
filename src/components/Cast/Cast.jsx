@@ -6,6 +6,7 @@ const Cast = () => {
   const { movieId } = useParams();
   console.log('movieId', movieId);
   const [actors, setActors] = useState(null);
+  console.log(actors);
 
   useEffect(() => {
     const fetchCast = async () => {
