@@ -4,7 +4,6 @@ import css from './Header.module.css';
 const Header = () => {
   return (
     <nav className={css.nav}>
-      Rfvjy
       <Link to="/" className={css.link}>
         Home
       </Link>

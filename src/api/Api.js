@@ -24,3 +24,5 @@ export const detailsApi = async id => {
   console.log('detailsApi', data);
   return data;
 };
+
+// 291015 "Under the Dog"
