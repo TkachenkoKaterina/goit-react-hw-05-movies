@@ -2,19 +2,21 @@ import SearchMovie from 'components/SearchMovie/SearchMovie';
 import { searchApi } from 'api/Api';
 import { useEffect, useState } from 'react';
 import MovieList from 'components/MovieList/MovieList';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [searchTextValue, setSearchTextValue] = useState('');
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const fetchSearchMovies = async () => {
       try {
-        const { results } = await searchApi(searchTextValue);
-        if (!searchTextValue) {
+        const searchText = searchParams.get('search');
+        if (!searchText) {
           return;
         }
-        console.log('results :>> ', results);
+
+        const { results } = await searchApi(searchText);
         setMovies(results);
       } catch (error) {
         console.error('Error fetching data:', error.message);
@@ -22,11 +24,10 @@ const Movies = () => {
     };
 
     fetchSearchMovies();
-  }, [searchTextValue]);
+  }, [searchParams]);
 
   const handleSubmit = searchText => {
-    setSearchTextValue(searchText);
-    // setMovies([]);
+    setSearchParams({ search: searchText });
   };
 
   return (

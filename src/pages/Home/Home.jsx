@@ -1,5 +1,6 @@
-import MovieList from 'components/MovieList/MovieList';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import MovieList from 'components/MovieList/MovieList';
 import { trendApi } from '../../api/Api';
 
 const Home = () => {
@@ -24,6 +25,10 @@ const Home = () => {
       <MovieList data={dataTrend} />
     </>
   );
+};
+
+Home.propTypes = {
+  data: PropTypes.array,
 };
 
 export default Home;

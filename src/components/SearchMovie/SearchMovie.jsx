@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import css from './SearchMovie.module.css';
 
@@ -33,6 +34,10 @@ const SearchMovie = ({ handleSubmit }) => {
       </form>
     </div>
   );
+};
+
+SearchMovie.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchMovie;

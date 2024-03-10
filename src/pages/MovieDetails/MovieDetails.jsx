@@ -1,21 +1,14 @@
 import { detailsApi } from 'api/Api';
-import { BackLink } from 'components/BackLink/BackLink';
-import { Suspense, useEffect, useState } from 'react';
+import BackLink from 'components/BackLink/BackLink';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
   const location = useLocation();
-
-  let backLinkHref = '/';
-  if (location.state?.from.pathname === '/movies') {
-    backLinkHref = '/movies';
-  } else {
-    backLinkHref = location.state?.from ?? '/';
-  }
+  const backLinkHref = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     const fetchMovieByID = async () => {
@@ -38,7 +31,7 @@ const MovieDetails = () => {
 
   return (
     <div className={css.container}>
-      <BackLink to={backLinkHref}>Back to Movies</BackLink>
+      <BackLink to={backLinkHref.current}>Back to Movies</BackLink>
       <div className={css.box}>
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}

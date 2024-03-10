@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import css from './Header.module.css';
 
@@ -12,6 +13,10 @@ const Header = () => {
       </Link>
     </nav>
   );
+};
+
+Header.propTypes = {
+  to: PropTypes.string,
 };
 
 export default Header;

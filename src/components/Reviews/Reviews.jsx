@@ -1,6 +1,7 @@
-import { reviewsApi } from 'api/Api';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { reviewsApi } from 'api/Api';
 import css from './Reviews.module.css';
 
 const Reviews = () => {
@@ -43,6 +44,10 @@ const Reviews = () => {
       )}
     </div>
   );
+};
+
+Reviews.propTypes = {
+  movieId: PropTypes.string,
 };
 
 export default Reviews;

@@ -9,7 +9,6 @@ const REVIEWS_URL = 'https://api.themoviedb.org/3/movie';
 
 export const trendApi = async query => {
   const { data } = await axios.get(`${TREND_URL}?api_key=${KEY}`);
-  // console.log('trendApi', data);
   return data;
 };
 
@@ -17,19 +16,16 @@ export const searchApi = async searchValue => {
   const { data } = await axios.get(
     `${SEARCH_URL}?api_key=${KEY}&query=${searchValue}`
   );
-  // console.log('searchApi', data);
   return data;
 };
 
 export const detailsApi = async id => {
   const { data } = await axios.get(`${DETAILS_URL}/${id}?api_key=${KEY}`);
-  // console.log('detailsApi', data);
   return data;
 };
 
 export const castApi = async id => {
   const { data } = await axios.get(`${CAST_URL}/${id}/credits?api_key=${KEY}`);
-  // console.log('castApi', data);
   return data;
 };
 
@@ -37,6 +33,5 @@ export const reviewsApi = async id => {
   const { data } = await axios.get(
     `${REVIEWS_URL}/${id}/reviews?api_key=${KEY}`
   );
-  console.log('reviewsApi', data);
   return data;
 };
