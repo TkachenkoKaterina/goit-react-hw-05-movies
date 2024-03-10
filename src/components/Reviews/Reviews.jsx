@@ -7,7 +7,6 @@ import css from './Reviews.module.css';
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
-  console.log(reviews);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -25,7 +24,7 @@ const Reviews = () => {
   if (!reviews) {
     return null;
   }
-  console.log('reviews :>> ', reviews);
+
   return (
     <div>
       {reviews.length ? (

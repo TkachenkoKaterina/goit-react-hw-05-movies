@@ -1,8 +1,8 @@
-import SearchMovie from 'components/SearchMovie/SearchMovie';
-import { searchApi } from 'api/Api';
-import { useEffect, useState } from 'react';
-import MovieList from 'components/MovieList/MovieList';
 import { useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { searchApi } from 'api/Api';
+import SearchMovie from 'components/SearchMovie/SearchMovie';
+import MovieList from 'components/MovieList/MovieList';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
